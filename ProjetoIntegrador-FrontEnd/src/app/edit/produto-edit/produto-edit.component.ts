@@ -11,34 +11,36 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./produto-edit.component.css']
 })
 export class ProdutoEditComponent implements OnInit {
-  
+
   produto: Produto = new Produto()
 
-  constructor( 
+  constructor(
     private produtoService: ProdutoService,
     private router: Router,
-    private route:ActivatedRoute
+    private route: ActivatedRoute
 
-    ){ }
+  ) { }
 
   ngOnInit() {
-    if(environment.token == ''){
-      this.router.navigate(['/entrar']) 
+
+
+    if (environment.token == '') {
+      this.router.navigate(['/entrar'])
     }
-       let id = this.route.snapshot.params['id']
-       this.findByIdProduto(id)
+    let id = this.route.snapshot.params['id']
+    this.findByIdProduto(id)
   }
-  findByIdProduto(id: number){
-    this.produtoService.getByIdProduto(id).subscribe((resp: Produto) =>{
-      this.produto = resp 
+  findByIdProduto(id: number) {
+    this.produtoService.getByIdProduto(id).subscribe((resp: Produto) => {
+      this.produto = resp
 
     })
 
 
   }
 
-  atualizar(){
-    this.produtoService.putProduto(this.produto).subscribe((resp: Produto)=>{
+  atualizar() {
+    this.produtoService.putProduto(this.produto).subscribe((resp: Produto) => {
       this.produto = resp
       alert('Produto atualizado com sucesso!')
       this.router.navigate(['/produto'])
@@ -47,5 +49,5 @@ export class ProdutoEditComponent implements OnInit {
     })
   }
 
-  
+
 }
