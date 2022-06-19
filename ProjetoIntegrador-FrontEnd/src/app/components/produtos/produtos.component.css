@@ -79,6 +79,7 @@
 
 .carrinho {
     background: #33cabb;
+    text-decoration: none;
 }
 
 .carrinho:hover {
@@ -115,6 +116,11 @@
     /* cria o contexto de posicionamento do botão */
     align-items: center;
     margin-left: 270px;
+}
+
+.text-uppercase {
+    text-decoration: none;
+    color: white;
 }
 
 label {
