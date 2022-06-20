@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment.prod';
 export class ProdutoDeleteComponent implements OnInit {
 
   produto: Produto = new Produto()
-  idProduto: number 
+  idProduto: number
 
   constructor(
     private produtoService: ProdutoService,
@@ -21,28 +21,28 @@ export class ProdutoDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0)
 
-    if(environment.token == ''){
-      this.router.navigate(['/entrar']) 
+    if (environment.token == '') {
+      this.router.navigate(['/entrar'])
     }
-    
+
     this.idProduto = this.route.snapshot.params['id']
     this.findByIdProduto(this.idProduto)
   }
-  
-  findByIdProduto(id:number){
-      this.produtoService.getByIdProduto(id).subscribe((resp: Produto)=>{
-        this.produto = resp
-      })
-     }
 
-     apagar(){
-      this.produtoService.deleteProduto(this.idProduto).subscribe(()=>{
-        alert('Produto apagado com sucesso!')
-        this.router.navigate(['/produto'])
-      })
+  findByIdProduto(id: number) {
+    this.produtoService.getByIdProduto(id).subscribe((resp: Produto) => {
+      this.produto = resp
+    })
+  }
 
-     }
+  apagar() {
+    this.produtoService.deleteProduto(this.idProduto).subscribe(() => {
+      alert('Produto apagado com sucesso!')
+      this.router.navigate(['/produto'])
+    })
+
+  }
 
 }
