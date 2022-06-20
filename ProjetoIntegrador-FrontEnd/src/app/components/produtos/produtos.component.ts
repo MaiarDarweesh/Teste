@@ -27,6 +27,7 @@ export class ProdutosComponent implements OnInit {
 
   idProduto = environment.id
   idCategoria: number
+  id = environment.id
 
   constructor(
     private router: Router,
@@ -112,8 +113,14 @@ export class ProdutosComponent implements OnInit {
 
   alert(){
     alert('Item doado! Obrigado :)')
-    
-  }
+    }
+
+    apagar() {
+      this.produtoService.deleteProduto(this.idProduto).subscribe(() => {
+        alert('Produto apagado com sucesso!')
+        this.router.navigate(['/produto'])
+      })
+    }  
 
 
 }
